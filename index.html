@@ -492,7 +492,7 @@ footer{background:var(--ch);padding:64px 56px 40px}
     </div>
     <div class="ppane on" id="pEx">
       <div id="lgView">
-        <div class="pdemo"><strong>Demo Login (preview only):</strong><br>Email: <code><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0a63647c6f797e65784a6c65787e637924696567">[email&#160;protected]</a></code> &nbsp; Password: <code>Fortis2024!</code><br><span style="font-size:10px;opacity:.7">Each investor receives individual credentials. Contact us to request access.</span></div>
+        <div class="pdemo"><strong>Demo Login (preview only):</strong><br>Email: <code>fortis@demo.com</code> &nbsp; Password: <code>Fortis2024!</code><br><span style="font-size:10px;opacity:.7">Each investor receives individual credentials. Contact us to request access.</span></div>
         <div class="fr"><label class="fl">Email Address</label><input class="fi" type="email" id="lgE" placeholder="your@email.com"></div>
         <div class="fr"><label class="fl">Password</label><input class="fi" type="password" id="lgP" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"></div>
         <button class="pbtn" id="lgBtn">Login to Portal</button>
@@ -654,7 +654,7 @@ footer{background:var(--ch);padding:64px 56px 40px}
         <div class="admf"><label>Capital Account Statement URL</label><input type="text" id="adD2" placeholder="https://..."></div>
         <div class="admf"><label>Offering Memorandum URL</label><input type="text" id="adD3" placeholder="https://..."></div>
       </div>
-      <div class="admsec"><div class="admst">Investor Credentials (one per line: email:password)</div><div class="admf"><textarea id="adCr" style="min-height:90px;font-family:monospace;font-size:12px">investor@fortis.com:Fortis2024!</textarea></div></div>
+      <div class="admsec"><div class="admst">Investor Credentials (one per line: email:password)</div><div class="admf"><textarea id="adCr" style="min-height:90px;font-family:monospace;font-size:12px">fortis@demo.com:Fortis2024!</textarea></div></div>
       <div><button class="admsave" id="admSaveBtn">&#10003; Apply Changes</button><button class="admcancel" id="admClose2">Cancel</button><span id="admOK" style="display:none;font-size:12px;color:#68d391;margin-left:9px">&#10003; Saved.</span></div>
     </div>
   </div>
@@ -810,7 +810,7 @@ document.querySelectorAll('[data-legal]').forEach(function(a){
 document.getElementById('navLoginBtn').addEventListener('click',function(){openPortal();});
 
 // ── Portal ──
-var DEF = {'investor@fortis.com':'Fortis2024!'};
+var DEF = {'fortis@demo.com':'Fortis2024!'};
 function getCreds(){
   try{
     var r=localStorage.getItem('fCreds');
