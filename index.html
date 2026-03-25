@@ -442,7 +442,7 @@ footer{background:var(--ch);padding:64px 56px 40px}
       <div class="conh">Let's Start a <em>Conversation</em></div>
       <p class="conb">Whether you're an accredited investor exploring opportunities, an operator seeking a capital partner, or a broker with off-market deal flow &mdash; we want to hear from you. Our team responds within one business day.</p>
       <div class="coni">
-        <div><div class="cil">Email</div><div class="civ"><a href="/cdn-cgi/l/email-protection#1f767179705f79706d6b766c7c7e6f766b7e73786d706a6f73737c317c7072"><span class="__cf_email__" data-cfemail="ddb4b3bbb29dbbb2afa9b4aebebcadb4a9bcb1baafb2a8adb1b1bef3beb2b0">[email&#160;protected]</span></a></div></div>
+        <div><div class="cil">Email</div><div class="civ"><a href="mailto:info@fortiscapitalgroupllc.com">info@fortiscapitalgroupllc.com</a></div></div>
         <div><div class="cil">Headquarters</div><div class="civ">Chicago, Illinois</div></div>
         <div><div class="cil">Investor Inquiries</div><div class="civ">Accredited investors only &middot; By appointment</div></div>
       </div>
@@ -507,7 +507,7 @@ footer{background:var(--ch);padding:64px 56px 40px}
     </div>
     <div class="ppane on" id="pEx">
       <div id="lgView">
-        <div class="pdemo"><strong>Demo Login (preview only):</strong><br>Email: <code><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b7d74696f72685b7f7e767435787476">[email&#160;protected]</a></code> &nbsp; Password: <code>Fortis2024!</code><br><span style="font-size:10px;opacity:.7">Each investor receives individual credentials. Contact us to request access.</span></div>
+        <div class="pdemo"><strong>Demo Login (preview only):</strong><br>Email: <code>demo@fortis.com</code> &nbsp; Password: <code>Fortis2024!</code><br><span style="font-size:10px;opacity:.7">Each investor receives individual credentials. Contact us to request access.</span></div>
         <div class="fr"><label class="fl">Email Address</label><input class="fi" type="email" id="lgE" placeholder="your@email.com"></div>
         <div class="fr"><label class="fl">Password</label><input class="fi" type="password" id="lgP" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"></div>
         <button class="pbtn" id="lgBtn">Login to Portal</button>
@@ -700,7 +700,7 @@ footer{background:var(--ch);padding:64px 56px 40px}
   </div>
   <div class="adm-pane" id="admP-creds">
     <div class="admsec"><div class="admst">Investor Credentials (one per line: email:password)</div>
-      <div class="admf"><textarea id="adCr" style="min-height:110px;font-family:monospace;font-size:12px">fortis@demo.com:Fortis2024!</textarea></div>
+      <div class="admf"><textarea id="adCr" style="min-height:110px;font-family:monospace;font-size:12px">demo@fortis.com:Fortis2024!</textarea></div>
       <p style="font-size:10px;color:rgba(255,255,255,.3);margin-top:4px">Format: email:password &mdash; one per line.</p>
     </div>
     <div><button class="admsave" id="admSaveCreds">&#10003; Save Credentials</button><span class="adm-msg" id="admOK-creds">&#10003; Saved.</span></div>
@@ -922,9 +922,9 @@ document.querySelectorAll('[data-legal]').forEach(function(a){
 document.getElementById('navLoginBtn').addEventListener('click',function(){openPortal();});
 
 // ── Portal ──
-var DEF = {'fortis@demo.com':'Fortis2024!'};
+var DEF = {'demo@fortis.com':'Fortis2024!'};
 function getCreds(){
-  try{ 
+  try{
     var r=localStorage.getItem('fCreds');
     if(!r)return DEF;
     var o={};
