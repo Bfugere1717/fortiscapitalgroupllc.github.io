@@ -291,6 +291,21 @@ footer{background:var(--ch);padding:64px 56px 40px}
 .admpin{width:100%;max-width:260px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:var(--w);padding:10px 13px;font-family:'Inter',sans-serif;font-size:14px;outline:none;border-radius:3px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto}
 .admpbtn{background:var(--p);color:var(--w);border:none;padding:10px 28px;border-radius:3px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer}
 .admperr{color:#fc8181;font-size:12px;margin-top:7px;display:none}
+.adm-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:14px;overflow-x:auto;scrollbar-width:none;gap:2px}
+.adm-tabs::-webkit-scrollbar{display:none}
+.adm-tab{padding:7px 12px;font-size:10px;font-weight:600;letter-spacing:.5px;color:rgba(255,255,255,.35);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;background:none;border-left:none;border-right:none;border-top:none;font-family:'Inter',sans-serif;transition:color .2s}
+.adm-tab.on{color:var(--pl);border-bottom-color:var(--pl)}
+.adm-pane{display:none}.adm-pane.on{display:block}
+.adm-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:3px;padding:9px 12px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.adm-item-info{flex:1;min-width:0}
+.adm-item-title{font-size:12px;color:rgba(255,255,255,.8);margin-bottom:2px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.adm-item-sub{font-size:10px;color:rgba(255,255,255,.3)}
+.adm-del{background:rgba(220,38,38,.2);border:1px solid rgba(220,38,38,.3);color:#fc8181;padding:3px 8px;border-radius:2px;font-size:10px;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;flex-shrink:0}
+.adm-del:hover{background:rgba(220,38,38,.35)}
+.adm-add{background:var(--p);color:var(--w);border:none;padding:8px 14px;border-radius:3px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;cursor:pointer;margin-top:8px;transition:background .2s}
+.adm-add:hover{background:var(--pd)}
+.adm-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.adm-msg{display:none;font-size:11px;color:#68d391;margin-left:9px}
 @media(max-width:900px){
   #nav{padding:0 24px}.nav-links,.nav-cta{display:none}.ham{display:flex}
   .hero{grid-template-columns:1fr;padding:72px 24px 56px;gap:40px}.h1{font-size:38px}
@@ -427,7 +442,7 @@ footer{background:var(--ch);padding:64px 56px 40px}
       <div class="conh">Let's Start a <em>Conversation</em></div>
       <p class="conb">Whether you're an accredited investor exploring opportunities, an operator seeking a capital partner, or a broker with off-market deal flow &mdash; we want to hear from you. Our team responds within one business day.</p>
       <div class="coni">
-        <div><div class="cil">Email</div><div class="civ"><a href="mailto:info@fortiscapitalgroupllc.com">info@fortiscapitalgroupllc.com</a></div></div>
+        <div><div class="cil">Email</div><div class="civ"><a href="/cdn-cgi/l/email-protection#1f767179705f79706d6b766c7c7e6f766b7e73786d706a6f73737c317c7072"><span class="__cf_email__" data-cfemail="ddb4b3bbb29dbbb2afa9b4aebebcadb4a9bcb1baafb2a8adb1b1bef3beb2b0">[email&#160;protected]</span></a></div></div>
         <div><div class="cil">Headquarters</div><div class="civ">Chicago, Illinois</div></div>
         <div><div class="cil">Investor Inquiries</div><div class="civ">Accredited investors only &middot; By appointment</div></div>
       </div>
@@ -492,7 +507,7 @@ footer{background:var(--ch);padding:64px 56px 40px}
     </div>
     <div class="ppane on" id="pEx">
       <div id="lgView">
-        <div class="pdemo"><strong>Demo Login (preview only):</strong><br>Email: <code>fortis@demo.com</code> &nbsp; Password: <code>Fortis2024!</code><br><span style="font-size:10px;opacity:.7">Each investor receives individual credentials. Contact us to request access.</span></div>
+        <div class="pdemo"><strong>Demo Login (preview only):</strong><br>Email: <code><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b7d74696f72685b7f7e767435787476">[email&#160;protected]</a></code> &nbsp; Password: <code>Fortis2024!</code><br><span style="font-size:10px;opacity:.7">Each investor receives individual credentials. Contact us to request access.</span></div>
         <div class="fr"><label class="fl">Email Address</label><input class="fi" type="email" id="lgE" placeholder="your@email.com"></div>
         <div class="fr"><label class="fl">Password</label><input class="fi" type="password" id="lgP" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"></div>
         <button class="pbtn" id="lgBtn">Login to Portal</button>
@@ -647,19 +662,116 @@ footer{background:var(--ch);padding:64px 56px 40px}
       <p style="font-size:11px;color:rgba(255,255,255,.2);margin-top:12px">Default: Fortis1000Doors!</p>
     </div>
     <div id="admCW" style="display:none" class="admbdy">
-      <div class="admsec"><div class="admst">Hero Stats</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="admf"><label>Assets Under Mgmt</label><input type="text" id="adAUM" value="$80M"></div><div class="admf"><label>Units Managed</label><input type="text" id="adUnits" value="84"></div></div></div>
-      <div class="admsec"><div class="admst">Investor Document URLs (paste secure PDF links)</div>
-        <div class="admf"><label>Q4 2025 Report URL</label><input type="text" id="adD0" placeholder="https://..."></div>
-        <div class="admf"><label>K-1 Tax Package URL</label><input type="text" id="adD1" placeholder="https://..."></div>
-        <div class="admf"><label>Capital Account Statement URL</label><input type="text" id="adD2" placeholder="https://..."></div>
-        <div class="admf"><label>Offering Memorandum URL</label><input type="text" id="adD3" placeholder="https://..."></div>
+  <div class="adm-tabs">
+    <button class="adm-tab on" data-admtab="stats">Stats</button>
+    <button class="adm-tab" data-admtab="docs">Investor Docs</button>
+    <button class="adm-tab" data-admtab="creds">Credentials</button>
+    <button class="adm-tab" data-admtab="team">Team</button>
+    <button class="adm-tab" data-admtab="port">Portfolio</button>
+    <button class="adm-tab" data-admtab="insights">Insights</button>
+    <button class="adm-tab" data-admtab="signdocs">Sign Docs</button>
+  </div>
+  <div class="adm-pane on" id="admP-stats">
+    <div class="admsec"><div class="admst">Hero Stats</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="admf"><label>Assets Under Mgmt</label><input type="text" id="adAUM" value="$80M"></div>
+        <div class="admf"><label>Units Managed</label><input type="text" id="adUnits" value="84"></div>
       </div>
-      <div class="admsec"><div class="admst">Investor Credentials (one per line: email:password)</div><div class="admf"><textarea id="adCr" style="min-height:90px;font-family:monospace;font-size:12px">fortis@demo.com:Fortis2024!</textarea></div></div>
-      <div><button class="admsave" id="admSaveBtn">&#10003; Apply Changes</button><button class="admcancel" id="admClose2">Cancel</button><span id="admOK" style="display:none;font-size:12px;color:#68d391;margin-left:9px">&#10003; Saved.</span></div>
+    </div>
+    <div><button class="admsave" id="admSaveStats">&#10003; Save Stats</button><span class="adm-msg" id="admOK-stats">&#10003; Saved.</span></div>
+  </div>
+  <div class="adm-pane" id="admP-docs">
+    <div class="admsec"><div class="admst">Global Document URLs (default for all investors)</div>
+      <div class="admf"><label>Q4 2025 Report URL</label><input type="text" id="adD0" placeholder="https://..."></div>
+      <div class="admf"><label>K-1 Tax Package URL</label><input type="text" id="adD1" placeholder="https://..."></div>
+      <div class="admf"><label>Capital Account Statement URL</label><input type="text" id="adD2" placeholder="https://..."></div>
+      <div class="admf"><label>Offering Memorandum URL</label><input type="text" id="adD3" placeholder="https://..."></div>
+    </div>
+    <div class="admsec"><div class="admst">Per-Investor Documents (overrides global per user)</div>
+      <div class="admf"><label>Investor Email</label><input type="email" id="adUserEmail" placeholder="investor@email.com"></div>
+      <div class="admf"><label>Q4 Report URL</label><input type="text" id="adUD0" placeholder="https://..."></div>
+      <div class="admf"><label>K-1 Tax Package URL</label><input type="text" id="adUD1" placeholder="https://..."></div>
+      <div class="admf"><label>Capital Account URL</label><input type="text" id="adUD2" placeholder="https://..."></div>
+      <div class="admf"><label>Offering Memo URL</label><input type="text" id="adUD3" placeholder="https://..."></div>
+      <button class="adm-add" id="admSaveUserDocBtn">Save User Docs</button>
+      <div id="admUserDocList" style="margin-top:10px"></div>
+    </div>
+    <div><button class="admsave" id="admSaveDocs">&#10003; Save Global Docs</button><span class="adm-msg" id="admOK-docs">&#10003; Saved.</span></div>
+  </div>
+  <div class="adm-pane" id="admP-creds">
+    <div class="admsec"><div class="admst">Investor Credentials (one per line: email:password)</div>
+      <div class="admf"><textarea id="adCr" style="min-height:110px;font-family:monospace;font-size:12px">fortis@demo.com:Fortis2024!</textarea></div>
+      <p style="font-size:10px;color:rgba(255,255,255,.3);margin-top:4px">Format: email:password &mdash; one per line.</p>
+    </div>
+    <div><button class="admsave" id="admSaveCreds">&#10003; Save Credentials</button><span class="adm-msg" id="admOK-creds">&#10003; Saved.</span></div>
+  </div>
+  <div class="adm-pane" id="admP-team">
+    <div class="admsec"><div class="admst">Add Team Member</div>
+      <div class="adm-row">
+        <div class="admf"><label>Full Name</label><input type="text" id="adTName" placeholder="Jane Smith"></div>
+        <div class="admf"><label>Title / Role</label><input type="text" id="adTRole" placeholder="Managing Director"></div>
+      </div>
+      <div class="admf"><label>Short Bio (shown on team card)</label><input type="text" id="adTBio" placeholder="Brief summary..."></div>
+      <div class="admf"><label>Photo URL (paste image link)</label><input type="text" id="adTPhoto" placeholder="https://..."></div>
+      <div class="admf"><label>Credentials (comma-separated)</label><input type="text" id="adTCreds" placeholder="MBA Finance, Harvard, CRE"></div>
+      <div class="admf"><label>Full Professional Background</label><textarea id="adTFullBio" style="min-height:80px" placeholder="Full bio for modal popup..."></textarea></div>
+      <button class="adm-add" id="admAddTeamBtn">+ Add Team Member</button>
+    </div>
+    <div class="admsec"><div class="admst">Added Team Members</div><div id="admTeamList"></div>
+      <p style="font-size:10px;color:rgba(255,255,255,.3);margin-top:6px">Original 4 partners always appear. Added members show after them.</p>
     </div>
   </div>
+  <div class="adm-pane" id="admP-port">
+    <div class="admsec"><div class="admst">Add Portfolio Property</div>
+      <div class="adm-row">
+        <div class="admf"><label>Property Name</label><input type="text" id="adPName" placeholder="Riverview Apartments"></div>
+        <div class="admf"><label>Badge Label</label><input type="text" id="adPBadge" placeholder="Active &middot; Sponsored"></div>
+      </div>
+      <div class="admf"><label>Address</label><input type="text" id="adPAddr" placeholder="123 Main St &middot; Chicago, IL 60601"></div>
+      <div class="adm-row">
+        <div class="admf"><label>Units</label><input type="text" id="adPUnits" placeholder="48"></div>
+        <div class="admf"><label>Asset Type</label><input type="text" id="adPType" placeholder="Multifamily"></div>
+      </div>
+      <div class="admf"><label>Status</label><input type="text" id="adPStatus" placeholder="Active"></div>
+      <div class="admf"><label>Property Image URL</label><input type="text" id="adPImg" placeholder="https://..."></div>
+      <button class="adm-add" id="admAddPortBtn">+ Add Property</button>
+    </div>
+    <div class="admsec"><div class="admst">Added Properties</div><div id="admPortList"></div></div>
+  </div>
+  <div class="adm-pane" id="admP-insights">
+    <div class="admsec"><div class="admst">Add Article / Insight</div>
+      <div class="adm-row">
+        <div class="admf"><label>Category Label</label><input type="text" id="adIcat" placeholder="Market Outlook"></div>
+        <div class="admf"><label>Date</label><input type="text" id="adIDate" placeholder="April 2026"></div>
+      </div>
+      <div class="admf"><label>Title</label><input type="text" id="adITit" placeholder="Article title..."></div>
+      <div class="admf"><label>Author</label><input type="text" id="adIAu" placeholder="Fortis Capital Research"></div>
+      <div class="admf"><label>Read Time</label><input type="text" id="adIRd" placeholder="5 min read"></div>
+      <div class="admf"><label>Short Excerpt (shown on card)</label><textarea id="adIExc" style="min-height:55px" placeholder="Brief excerpt..."></textarea></div>
+      <div class="admf"><label>Full Article Body (HTML: &lt;p&gt;, &lt;h3&gt;, &lt;blockquote&gt;)</label><textarea id="adIBody" style="min-height:100px" placeholder="&lt;p&gt;Full article...&lt;/p&gt;"></textarea></div>
+      <button class="adm-add" id="admAddInsightBtn">+ Add Article</button>
+    </div>
+    <div class="admsec"><div class="admst">Added Articles</div><div id="admInsightList"></div></div>
+  </div>
+  <div class="adm-pane" id="admP-signdocs">
+    <div class="admsec"><div class="admst">Add Signature Document for Prospective Investors</div>
+      <div class="admf"><label>Deal / Document Name</label><input type="text" id="adSDName" placeholder="Subscription Agreement &#8212; Deal Name"></div>
+      <div class="admf"><label>Document URL (secure PDF or link)</label><input type="text" id="adSDUrl" placeholder="https://..."></div>
+      <div class="admf"><label>Description</label><input type="text" id="adSDDesc" placeholder="Binding subscription agreement for this deal"></div>
+      <button class="adm-add" id="admAddSignDocBtn">+ Add Document</button>
+    </div>
+    <div class="admsec"><div class="admst">Signature Documents in Portal</div>
+      <div id="admSignDocList"></div>
+      <p style="font-size:10px;color:rgba(255,255,255,.3);margin-top:6px">These appear in the Investor Portal for prospective investors.</p>
+    </div>
+  </div>
+  <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)">
+    <button class="admcancel" id="admClose2">Close Admin</button>
+  </div>
 </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  </div>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
 'use strict';
 
@@ -841,8 +953,14 @@ function showDash(s){
   document.getElementById('lgView').style.display='none';
   document.getElementById('dashView').style.display='block';
   document.getElementById('invName').textContent=s.name||'Investor';
+  // Per-user docs override global
   var urls=[];
   try{urls=JSON.parse(localStorage.getItem('fDocUrls')||'[]');}catch(e){}
+  try{
+    var ud=JSON.parse(localStorage.getItem('fUserDocs')||'{}');
+    var em=(s.email||'').toLowerCase();
+    if(ud[em]&&ud[em].length)urls=ud[em];
+  }catch(e){}
   document.querySelectorAll('.doc-dl').forEach(function(btn){
     var idx=parseInt(btn.getAttribute('data-doc'));
     if(!isNaN(idx)&&urls[idx]){
@@ -1135,26 +1253,314 @@ document.getElementById('admLoginBtn').addEventListener('click',function(){
   }else{document.getElementById('admPerr').style.display='block';}
 });
 document.getElementById('admPw').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('admLoginBtn').click();});
-document.getElementById('admSaveBtn').addEventListener('click',function(){
-  var aum=document.getElementById('adAUM').value;
-  var urls=[0,1,2,3].map(function(i){return document.getElementById('adD'+i).value;});
-  var creds=document.getElementById('adCr').value;
-  document.getElementById('statAUM').textContent=aum;
-  localStorage.setItem('fAdmin',JSON.stringify({aum:aum}))
-  localStorage.setItem('fDocUrls',JSON.stringify(urls));
-  if(creds)localStorage.setItem('fCreds',creds);
-  document.getElementById('admOK').style.display='inline';
-  setTimeout(function(){document.getElementById('admOK').style.display='none';},2500);
+
+// ── Admin Tab switching ──
+document.querySelectorAll('.adm-tab').forEach(function(tab){
+  tab.addEventListener('click',function(){
+    var t=this.getAttribute('data-admtab');
+    document.querySelectorAll('.adm-tab').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('.adm-pane').forEach(function(x){x.classList.remove('on');});
+    this.classList.add('on');
+    var pane=document.getElementById('admP-'+t);
+    if(pane)pane.classList.add('on');
+  });
 });
 
+// ── Admin: flash saved msg ──
+function admFlash(id){var el=document.getElementById(id);if(!el)return;el.style.display='inline';setTimeout(function(){el.style.display='none';},2200);}
+
+// ── Admin: Save Stats ──
+document.getElementById('admSaveStats').addEventListener('click',function(){
+  var aum=document.getElementById('adAUM').value;
+  var units=document.getElementById('adUnits').value;
+  document.getElementById('statAUM').textContent=aum;
+  var el=document.getElementById('statUnits');if(el)el.textContent=units;
+  localStorage.setItem('fAdmin',JSON.stringify({aum:aum,units:units}));
+  admFlash('admOK-stats');
+});
+
+// ── Admin: Save Global Docs ──
+document.getElementById('admSaveDocs').addEventListener('click',function(){
+  var urls=[0,1,2,3].map(function(i){return document.getElementById('adD'+i).value;});
+  localStorage.setItem('fDocUrls',JSON.stringify(urls));
+  admFlash('admOK-docs');
+});
+
+// ── Admin: Per-user docs ──
+function admRenderUserDocs(){
+  var ud={};try{ud=JSON.parse(localStorage.getItem('fUserDocs')||'{}');}catch(e){}
+  var list=document.getElementById('admUserDocList');
+  list.innerHTML='';
+  Object.keys(ud).forEach(function(em){
+    var d=ud[em];
+    var row=document.createElement('div');row.className='adm-item';
+    row.innerHTML='<div class="adm-item-info"><div class="adm-item-title">'+em+'</div><div class="adm-item-sub">'+d.filter(Boolean).length+' doc(s) set</div></div><button class="adm-del" data-udem="'+em+'">Remove</button>';
+    row.querySelector('.adm-del').addEventListener('click',function(){
+      var e2=this.getAttribute('data-udem');
+      var obj={};try{obj=JSON.parse(localStorage.getItem('fUserDocs')||'{}');}catch(x){}
+      delete obj[e2];localStorage.setItem('fUserDocs',JSON.stringify(obj));
+      admRenderUserDocs();
+    });
+    list.appendChild(row);
+  });
+}
+document.getElementById('admSaveUserDocBtn').addEventListener('click',function(){
+  var em=document.getElementById('adUserEmail').value.trim().toLowerCase();
+  if(!em){alert('Please enter the investor email.');return;}
+  var ud={};try{ud=JSON.parse(localStorage.getItem('fUserDocs')||'{}');}catch(e){}
+  ud[em]=[0,1,2,3].map(function(i){return document.getElementById('adUD'+i).value.trim();});
+  localStorage.setItem('fUserDocs',JSON.stringify(ud));
+  document.getElementById('adUserEmail').value='';
+  [0,1,2,3].forEach(function(i){document.getElementById('adUD'+i).value='';});
+  admRenderUserDocs();
+  alert('Docs saved for '+em);
+});
+
+// ── Admin: Save Credentials ──
+document.getElementById('admSaveCreds').addEventListener('click',function(){
+  var creds=document.getElementById('adCr').value;
+  if(creds)localStorage.setItem('fCreds',creds);
+  admFlash('admOK-creds');
+});
+
+// ── Admin: Team Management ──
+function admRenderTeamList(){
+  var items=[];try{items=JSON.parse(localStorage.getItem('fExtraTeam')||'[]');}catch(e){}
+  var list=document.getElementById('admTeamList');
+  list.innerHTML='';
+  if(!items.length){list.innerHTML='<p style="font-size:11px;color:rgba(255,255,255,.3)">No additional members added yet.</p>';return;}
+  items.forEach(function(m,idx){
+    var row=document.createElement('div');row.className='adm-item';
+    row.innerHTML='<div class="adm-item-info"><div class="adm-item-title">'+m.nm+'</div><div class="adm-item-sub">'+m.rl+'</div></div><button class="adm-del" data-tidx="'+idx+'">Remove</button>';
+    row.querySelector('.adm-del').addEventListener('click',function(){
+      var i2=parseInt(this.getAttribute('data-tidx'));
+      var arr=[];try{arr=JSON.parse(localStorage.getItem('fExtraTeam')||'[]');}catch(x){}
+      arr.splice(i2,1);localStorage.setItem('fExtraTeam',JSON.stringify(arr));
+      admRenderTeamList();admRenderTeamSection();
+    });
+    list.appendChild(row);
+  });
+}
+function admRenderTeamSection(){
+  var items=[];try{items=JSON.parse(localStorage.getItem('fExtraTeam')||'[]');}catch(e){}
+  var grid=document.querySelector('.tgrid');
+  if(!grid)return;
+  document.querySelectorAll('.tc-custom').forEach(function(el){el.remove();});
+  items.forEach(function(m,idx){
+    var card=document.createElement('div');
+    card.className='tc tc-custom';
+    var initials=(m.nm||'?').split(' ').map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();
+    var photoHtml=m.photo?'<img src="'+m.photo+'" alt="'+m.nm+'" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;border-radius:50%">':'<span style="font-size:20px;color:var(--p)">'+initials+'</span>';
+    card.innerHTML='<div class="tav" style="display:flex;align-items:center;justify-content:center">'+photoHtml+'</div><div class="tnm">'+m.nm+'</div><div class="trl">'+m.rl+'</div><p class="tbio">'+m.bio+'</p><div class="tvp">View Full Profile &rarr;</div>';
+    card.addEventListener('click',function(){openCustomBio(idx);});
+    grid.appendChild(card);
+  });
+}
+function openCustomBio(idx){
+  var items=[];try{items=JSON.parse(localStorage.getItem('fExtraTeam')||'[]');}catch(e){}
+  var m=items[idx];if(!m)return;
+  var av=document.getElementById('bioAv');av.innerHTML='';
+  if(m.photo){var img=document.createElement('img');img.src=m.photo;img.alt=m.nm;img.style.cssText='width:100%;height:100%;object-fit:cover;object-position:top;border-radius:50%;display:block';av.appendChild(img);}
+  else{av.textContent=(m.nm||'').split(' ').map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();}
+  document.getElementById('bioNm').textContent=m.nm;
+  document.getElementById('bioRl').textContent=m.rl;
+  var crs=(m.creds||'').split(',').filter(Boolean).map(function(c){return'<span class="biocr">'+c.trim()+'</span>';}).join('');
+  document.getElementById('bioCrs').innerHTML=crs;
+  document.getElementById('bioBdy').innerHTML='<div class="biosec"><div class="biosect">Professional Background</div><p>'+m.fullbio+'</p></div>';
+  openMo('bioMo');
+}
+document.getElementById('admAddTeamBtn').addEventListener('click',function(){
+  var nm=document.getElementById('adTName').value.trim();
+  var rl=document.getElementById('adTRole').value.trim();
+  var bio=document.getElementById('adTBio').value.trim();
+  var photo=document.getElementById('adTPhoto').value.trim();
+  var creds=document.getElementById('adTCreds').value.trim();
+  var fullbio=document.getElementById('adTFullBio').value.trim();
+  if(!nm||!rl){alert('Please enter name and role.');return;}
+  var items=[];try{items=JSON.parse(localStorage.getItem('fExtraTeam')||'[]');}catch(e){}
+  items.push({nm:nm,rl:rl,bio:bio,photo:photo,creds:creds,fullbio:fullbio||bio});
+  localStorage.setItem('fExtraTeam',JSON.stringify(items));
+  ['adTName','adTRole','adTBio','adTPhoto','adTCreds','adTFullBio'].forEach(function(id){document.getElementById(id).value='';});
+  admRenderTeamList();admRenderTeamSection();
+  alert('Team member added!');
+});
+
+// ── Admin: Portfolio Management ──
+function admRenderPortList(){
+  var items=[];try{items=JSON.parse(localStorage.getItem('fExtraPortfolio')||'[]');}catch(e){}
+  var list=document.getElementById('admPortList');list.innerHTML='';
+  if(!items.length){list.innerHTML='<p style="font-size:11px;color:rgba(255,255,255,.3)">No additional properties added yet.</p>';return;}
+  items.forEach(function(p,idx){
+    var row=document.createElement('div');row.className='adm-item';
+    row.innerHTML='<div class="adm-item-info"><div class="adm-item-title">'+p.name+'</div><div class="adm-item-sub">'+p.addr+'</div></div><button class="adm-del" data-pidx="'+idx+'">Remove</button>';
+    row.querySelector('.adm-del').addEventListener('click',function(){
+      var i2=parseInt(this.getAttribute('data-pidx'));
+      var arr=[];try{arr=JSON.parse(localStorage.getItem('fExtraPortfolio')||'[]');}catch(x){}
+      arr.splice(i2,1);localStorage.setItem('fExtraPortfolio',JSON.stringify(arr));
+      admRenderPortList();admRenderPortSection();
+    });
+    list.appendChild(row);
+  });
+}
+function admRenderPortSection(){
+  var items=[];try{items=JSON.parse(localStorage.getItem('fExtraPortfolio')||'[]');}catch(e){}
+  var grid=document.querySelector('.pg');if(!grid)return;
+  document.querySelectorAll('.pc-custom').forEach(function(el){el.remove();});
+  items.forEach(function(p){
+    var card=document.createElement('div');card.className='pc pc-custom';
+    var imgHtml=p.img?'<img class="pi" src="'+p.img+'" alt="'+p.name+'">':'<div class="pi" style="background:var(--lav);display:flex;align-items:center;justify-content:center"><span style="font-size:13px;color:var(--p);font-weight:600">'+p.name+'</span></div>';
+    card.innerHTML=imgHtml+'<div class="pb"><span class="pbadge">'+p.badge+'</span><div class="pname">'+p.name+'</div><div class="paddr">'+p.addr+'</div><div class="pdiv"></div><div class="pmets"><div><div class="pmv">'+p.units+'</div><div class="pml">Total Units</div></div><div><div class="pmv">'+p.type+'</div><div class="pml">Asset Type</div></div><div><div class="pmv">'+p.status+'</div><div class="pml">Status</div></div></div></div>';
+    grid.appendChild(card);
+  });
+}
+document.getElementById('admAddPortBtn').addEventListener('click',function(){
+  var name=document.getElementById('adPName').value.trim();
+  var badge=document.getElementById('adPBadge').value.trim();
+  var addr=document.getElementById('adPAddr').value.trim();
+  var units=document.getElementById('adPUnits').value.trim();
+  var type=document.getElementById('adPType').value.trim();
+  var status=document.getElementById('adPStatus').value.trim();
+  var img=document.getElementById('adPImg').value.trim();
+  if(!name){alert('Please enter a property name.');return;}
+  var items=[];try{items=JSON.parse(localStorage.getItem('fExtraPortfolio')||'[]');}catch(e){}
+  items.push({name:name,badge:badge||'Active',addr:addr,units:units||'—',type:type||'Multifamily',status:status||'Active',img:img});
+  localStorage.setItem('fExtraPortfolio',JSON.stringify(items));
+  ['adPName','adPBadge','adPAddr','adPUnits','adPType','adPStatus','adPImg'].forEach(function(id){document.getElementById(id).value='';});
+  admRenderPortList();admRenderPortSection();
+  alert('Property added to portfolio!');
+});
+
+// ── Admin: Insights Management ──
+function admRenderInsightList(){
+  var items=[];try{items=JSON.parse(localStorage.getItem('fExtraInsights')||'[]');}catch(e){}
+  var list=document.getElementById('admInsightList');list.innerHTML='';
+  if(!items.length){list.innerHTML='<p style="font-size:11px;color:rgba(255,255,255,.3)">No additional articles added yet.</p>';return;}
+  items.forEach(function(a,idx){
+    var row=document.createElement('div');row.className='adm-item';
+    row.innerHTML='<div class="adm-item-info"><div class="adm-item-title">'+a.tit+'</div><div class="adm-item-sub">'+a.cat+' &middot; '+a.dt+'</div></div><button class="adm-del" data-iidx="'+idx+'">Remove</button>';
+    row.querySelector('.adm-del').addEventListener('click',function(){
+      var i2=parseInt(this.getAttribute('data-iidx'));
+      var arr=[];try{arr=JSON.parse(localStorage.getItem('fExtraInsights')||'[]');}catch(x){}
+      arr.splice(i2,1);localStorage.setItem('fExtraInsights',JSON.stringify(arr));
+      admRenderInsightList();admRenderInsightsSection();
+    });
+    list.appendChild(row);
+  });
+}
+function admRenderInsightsSection(){
+  var items=[];try{items=JSON.parse(localStorage.getItem('fExtraInsights')||'[]');}catch(e){}
+  var grid=document.querySelector('.ig');if(!grid)return;
+  document.querySelectorAll('.ic-custom').forEach(function(el){el.remove();});
+  var totalART=ARTS.length;
+  items.forEach(function(a,idx){
+    var card=document.createElement('div');card.className='ic ic-custom';
+    card.innerHTML='<div class="icat">'+a.cat+'</div><div class="itit">'+a.tit+'</div><p class="iex">'+a.exc+'</p><div class="imt"><span class="idt">'+a.dt+'</span><button class="ird" data-custart="'+idx+'">Read &rarr;</button></div>';
+    card.querySelector('.ird').addEventListener('click',function(){openCustomArt(parseInt(this.getAttribute('data-custart')));});
+    grid.appendChild(card);
+  });
+}
+function openCustomArt(idx){
+  var items=[];try{items=JSON.parse(localStorage.getItem('fExtraInsights')||'[]');}catch(e){}
+  var a=items[idx];if(!a)return;
+  document.getElementById('artCat').textContent=a.cat;
+  document.getElementById('artTit').textContent=a.tit;
+  document.getElementById('artAu').textContent=a.au||'Fortis Capital';
+  document.getElementById('artDt').textContent=a.dt;
+  document.getElementById('artRd').textContent=a.rd||'';
+  document.getElementById('artBdy').innerHTML=a.body||(''+a.exc);
+  openMo('artMo');
+}
+document.getElementById('admAddInsightBtn').addEventListener('click',function(){
+  var cat=document.getElementById('adIcat').value.trim();
+  var dt=document.getElementById('adIDate').value.trim();
+  var tit=document.getElementById('adITit').value.trim();
+  var au=document.getElementById('adIAu').value.trim();
+  var rd=document.getElementById('adIRd').value.trim();
+  var exc=document.getElementById('adIExc').value.trim();
+  var body=document.getElementById('adIBody').value.trim();
+  if(!tit){alert('Please enter a title.');return;}
+  var items=[];try{items=JSON.parse(localStorage.getItem('fExtraInsights')||'[]');}catch(e){}
+  items.push({cat:cat||'Insights',dt:dt||'',tit:tit,au:au||'Fortis Capital',rd:rd||'',exc:exc,body:body||('<p>'+exc+'</p>')});
+  localStorage.setItem('fExtraInsights',JSON.stringify(items));
+  ['adIcat','adIDate','adITit','adIAu','adIRd','adIExc','adIBody'].forEach(function(id){document.getElementById(id).value='';});
+  admRenderInsightList();admRenderInsightsSection();
+  alert('Article added!');
+});
+
+// ── Admin: Sign Docs Management ──
+function admRenderSignDocList(){
+  var items=[];try{items=JSON.parse(localStorage.getItem('fSignDocs')||'[]');}catch(e){}
+  var list=document.getElementById('admSignDocList');list.innerHTML='';
+  if(!items.length){list.innerHTML='<p style="font-size:11px;color:rgba(255,255,255,.3)">No signature documents added yet.</p>';return;}
+  items.forEach(function(s,idx){
+    var row=document.createElement('div');row.className='adm-item';
+    row.innerHTML='<div class="adm-item-info"><div class="adm-item-title">'+s.name+'</div><div class="adm-item-sub">'+s.desc+'</div></div><button class="adm-del" data-sidx="'+idx+'">Remove</button>';
+    row.querySelector('.adm-del').addEventListener('click',function(){
+      var i2=parseInt(this.getAttribute('data-sidx'));
+      var arr=[];try{arr=JSON.parse(localStorage.getItem('fSignDocs')||'[]');}catch(x){}
+      arr.splice(i2,1);localStorage.setItem('fSignDocs',JSON.stringify(arr));
+      admRenderSignDocList();admRenderSignDocsInPortal();
+    });
+    list.appendChild(row);
+  });
+}
+function admRenderSignDocsInPortal(){
+  var items=[];try{items=JSON.parse(localStorage.getItem('fSignDocs')||'[]');}catch(e){}
+  var pro=document.getElementById('pPro');if(!pro)return;
+  document.querySelectorAll('.deal-custom').forEach(function(el){el.remove();});
+  items.forEach(function(s){
+    var deal=document.createElement('div');deal.className='deal deal-custom';
+    deal.innerHTML='<div class="dealh"><div class="dealn">'+s.name+'</div><div class="deals">Pending Signature</div></div><div class="dealb"><p class="deald">'+s.desc+'</p><div class="deala"><button class="psm sign-btn" data-deal="'+s.name+'">&#9997; Review &amp; Sign</button>'+(s.url?'<a href="'+s.url+'" target="_blank" class="pol" style="padding:7px 14px;font-size:11px;text-decoration:none;display:inline-flex;align-items:center">&#128196; View Document</a>':'')+'</div></div>';
+    deal.querySelector('.sign-btn').addEventListener('click',function(){openSignModal(this.getAttribute('data-deal'));});
+    pro.insertBefore(deal,pro.querySelector('.regform'));
+  });
+}
+document.getElementById('admAddSignDocBtn').addEventListener('click',function(){
+  var name=document.getElementById('adSDName').value.trim();
+  var url=document.getElementById('adSDUrl').value.trim();
+  var desc=document.getElementById('adSDDesc').value.trim();
+  if(!name){alert('Please enter a document name.');return;}
+  var items=[];try{items=JSON.parse(localStorage.getItem('fSignDocs')||'[]');}catch(e){}
+  items.push({name:name,url:url,desc:desc||'Review and sign this investment document.'});
+  localStorage.setItem('fSignDocs',JSON.stringify(items));
+  ['adSDName','adSDUrl','adSDDesc'].forEach(function(id){document.getElementById(id).value='';});
+  admRenderSignDocList();admRenderSignDocsInPortal();
+  alert('Signature document added to portal!');
+});
+
+// ── Admin: openAdmin (load all data) ──
+function openAdmin(){
+  document.getElementById('admO').classList.add('open');
+  document.body.style.overflow='hidden';
+  try{
+    var d=JSON.parse(localStorage.getItem('fAdmin')||'{}');
+    if(d.aum)document.getElementById('adAUM').value=d.aum;
+    if(d.units)document.getElementById('adUnits').value=d.units;
+    var u=JSON.parse(localStorage.getItem('fDocUrls')||'[]');
+    u.forEach(function(v,i){var el=document.getElementById('adD'+i);if(el&&v)el.value=v;});
+    var cr=localStorage.getItem('fCreds');
+    if(cr)document.getElementById('adCr').value=cr;
+  }catch(e){}
+  admRenderUserDocs();
+  admRenderTeamList();
+  admRenderPortList();
+  admRenderInsightList();
+  admRenderSignDocList();
+}
+
+// ── Init: render dynamic content on load ──
 (function(){
   try{
     var d=JSON.parse(localStorage.getItem('fAdmin')||'{}');
-    if(d.aum)document.getElementById('statAUM').textContent=d.aum;
+    if(d.aum){document.getElementById('statAUM').textContent=d.aum;}
+    if(d.units){var su=document.getElementById('statUnits');if(su)su.textContent=d.units;}
   }catch(e){}
+  admRenderTeamSection();
+  admRenderPortSection();
+  admRenderInsightsSection();
+  admRenderSignDocsInPortal();
 })();
 
 })();
 </script>
-</body>
-</html>
+</body></html>
