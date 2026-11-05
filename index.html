@@ -507,7 +507,7 @@ footer{background:var(--ch);padding:64px 56px 40px}
     </div>
     <div class="ppane on" id="pEx">
       <div id="lgView">
-        <div class="pdemo"><strong>Demo Login (preview only):</strong><br>Email: <code>demo@fortis.com</code> &nbsp; Password: <code>Fortis2024!</code><br><span style="font-size:10px;opacity:.7">Each investor receives individual credentials. Contact us to request access.</span></div>
+        
         <div class="fr"><label class="fl">Email Address</label><input class="fi" type="email" id="lgE" placeholder="your@email.com"></div>
         <div class="fr"><label class="fl">Password</label><input class="fi" type="password" id="lgP" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"></div>
         <button class="pbtn" id="lgBtn">Login to Portal</button>
@@ -700,7 +700,7 @@ footer{background:var(--ch);padding:64px 56px 40px}
   </div>
   <div class="adm-pane" id="admP-creds">
     <div class="admsec"><div class="admst">Investor Credentials (one per line: email:password)</div>
-      <div class="admf"><textarea id="adCr" style="min-height:110px;font-family:monospace;font-size:12px">demo@fortis.com:Fortis2024!</textarea></div>
+      <div class="admf"><textarea id="adCr" style="min-height:110px;font-family:monospace;font-size:12px"></textarea></div>
       <p style="font-size:10px;color:rgba(255,255,255,.3);margin-top:4px">Format: email:password &mdash; one per line.</p>
     </div>
     <div><button class="admsave" id="admSaveCreds">&#10003; Save Credentials</button><span class="adm-msg" id="admOK-creds">&#10003; Saved.</span></div>
@@ -922,7 +922,7 @@ document.querySelectorAll('[data-legal]').forEach(function(a){
 document.getElementById('navLoginBtn').addEventListener('click',function(){openPortal();});
 
 // ── Portal ──
-var DEF = {'demo@fortis.com':'Fortis2024!'};
+var DEF = {};
 function getCreds(){
   try{
     var r=localStorage.getItem('fCreds');
@@ -974,7 +974,7 @@ document.getElementById('lgBtn').addEventListener('click',function(){
   var em=document.getElementById('lgE').value.trim().toLowerCase();
   var pw=document.getElementById('lgP').value;
   var c=getCreds();
-  if(c[em]&&c[em]===pw){
+  if(false){
     var s={email:em,name:'Valued Investor'};
     setSess(s);showDash(s);
     document.getElementById('lgErr').style.display='none';
@@ -1215,12 +1215,12 @@ function sendEmail(name,email,phone,type,message){
 }
 
 // ── Admin ──
-var ADM_PW='Fortis1000Doors!';
+var ADM_PW=null;
 var admClicks=0,admTimer=null;
 document.getElementById('ftLogo').addEventListener('click',function(){
   admClicks++;
   clearTimeout(admTimer);
-  if(admClicks>=3){admClicks=0;openAdmin();}
+  if(admClicks>=3){admClicks=0;}
   else admTimer=setTimeout(function(){admClicks=0;},700);
 });
 function openAdmin(){
@@ -1247,7 +1247,7 @@ document.getElementById('admO').addEventListener('click',function(e){if(e.target
 document.getElementById('admClose').addEventListener('click',closeAdmin);
 document.getElementById('admClose2').addEventListener('click',closeAdmin);
 document.getElementById('admLoginBtn').addEventListener('click',function(){
-  if(document.getElementById('admPw').value===ADM_PW){
+  if(false){
     document.getElementById('admLgW').style.display='none';
     document.getElementById('admCW').style.display='block';
   }else{document.getElementById('admPerr').style.display='block';}
